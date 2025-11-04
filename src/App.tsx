@@ -16,7 +16,7 @@ export const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [todos, setTodos] = useState<Todo[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [filter, setFilter] = useState<Filter>(Filter.All)
+  const [filter, setFilter] = useState<Filter>(Filter.All);
 
   const [newTodoTitle, setTodoTitle] = useState('');
   const [tempTodo, setTempTodo] = useState<Todo | null>(null);
@@ -120,9 +120,12 @@ export const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (!error) return;
+    if (!error) {
+      return;
+    }
 
     const timer = setTimeout(() => setError(null), 3000);
+
     return () => clearTimeout(timer);
   }, [error]);
 

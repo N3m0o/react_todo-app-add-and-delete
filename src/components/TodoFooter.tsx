@@ -30,7 +30,7 @@ export const TodoFooter: React.FC<Props> = ({
       <nav className="filter" data-cy="Filter">
         <a
           href="#/"
-          className={cn('filter__link', { selected: filter === 'all' })}
+          className={cn('filter__link', { selected: filter === Filter.All })}
           data-cy="FilterLinkAll"
           onClick={() => onFilterChange(Filter.All)}
         >
@@ -39,7 +39,7 @@ export const TodoFooter: React.FC<Props> = ({
 
         <a
           href="#/active"
-          className={cn('filter__link', { selected: filter === 'active' })}
+          className={cn('filter__link', { selected: filter === Filter.Active })}
           data-cy="FilterLinkActive"
           onClick={() => onFilterChange(Filter.Active)}
         >
@@ -48,7 +48,7 @@ export const TodoFooter: React.FC<Props> = ({
 
         <a
           href="#/completed"
-          className={cn('filter__link', { selected: filter === 'completed' })}
+          className={cn('filter__link', { selected: filter === Filter.Completed })}
           data-cy="FilterLinkCompleted"
           onClick={() => onFilterChange(Filter.Completed)}
         >
