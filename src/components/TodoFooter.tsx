@@ -1,13 +1,12 @@
 import React from 'react';
 import cn from 'classnames';
 import { Todo } from '../types/Todo';
+import { Filter } from '../types/Filter';
 /* eslint-disable @typescript-eslint/indent */
 type Props = {
   activeCount: number;
-  filter: 'all' | 'active' | 'completed';
-  setFilter: React.Dispatch<
-    React.SetStateAction<'all' | 'active' | 'completed'>
-  >;
+  filter: Filter;
+  onFilterChange: (value: Filter) => void;
   todos: Todo[];
   handleClearCompleted: () => Promise<void>;
   deletingId: number[];
@@ -16,7 +15,7 @@ type Props = {
 export const TodoFooter: React.FC<Props> = ({
   activeCount,
   filter,
-  setFilter,
+  onFilterChange,
   todos,
   handleClearCompleted,
 }) => {
@@ -33,7 +32,7 @@ export const TodoFooter: React.FC<Props> = ({
           href="#/"
           className={cn('filter__link', { selected: filter === 'all' })}
           data-cy="FilterLinkAll"
-          onClick={() => setFilter('all')}
+          onClick={() => onFilterChange(Filter.All)}
         >
           All
         </a>
@@ -42,7 +41,7 @@ export const TodoFooter: React.FC<Props> = ({
           href="#/active"
           className={cn('filter__link', { selected: filter === 'active' })}
           data-cy="FilterLinkActive"
-          onClick={() => setFilter('active')}
+          onClick={() => onFilterChange(Filter.Active)}
         >
           Active
         </a>
@@ -51,7 +50,7 @@ export const TodoFooter: React.FC<Props> = ({
           href="#/completed"
           className={cn('filter__link', { selected: filter === 'completed' })}
           data-cy="FilterLinkCompleted"
-          onClick={() => setFilter('completed')}
+          onClick={() => onFilterChange(Filter.Completed)}
         >
           Completed
         </a>
